@@ -11,7 +11,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
  */
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  return graphql(`
+  const result = await graphql(`
   {
     allMarkdownRemark {
       edges {
@@ -34,12 +34,12 @@ exports.createPages = async ({ graphql, actions }) => {
       })  
     })
   })
-  // createPage({
-  //   path: "/using-dsg",
-  //   component: require.resolve("./src/templates/using-dsg.js"),
-  //   context: {},
-  //   defer: true,
-  // })
+  createPage({
+    path: "/using-dsg", // URL path
+    component: path.resolve("./src/templates/using-dsg.js"), // Template component
+    context: {}, // Optional: pass data to the page
+    defer: true, // (Optional) Defers page generation for faster builds
+  });
 }
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
