@@ -5,3 +5,8 @@
  */
 
 // You can delete this file if you're not using it
+
+// Disables Chromecast API attempts completely if needed
+if (typeof window !== 'undefined') {
+    window.__onGCastApiAvailable = function() {};
+  }
